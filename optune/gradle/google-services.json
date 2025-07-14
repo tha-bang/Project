@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "218615547263",
+    "project_id": "optune-ff32f",
+    "storage_bucket": "optune-ff32f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:218615547263:android:6e03bf8c690c58756b464a",
+        "android_client_info": {
+          "package_name": "com.optune"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyABbuUDcWLcUCfjHoEHLYDb_DuQpURs2aU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

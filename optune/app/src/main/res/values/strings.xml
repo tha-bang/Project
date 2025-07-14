@@ -1,0 +1,17 @@
+
+<resources>
+    <string name="app_name">optune</string>
+    <string name="tbose">YOUR_CLIENT_ID_HERE.apps.googleusercontent.com</string>
+    <string name="select_role_error">Please select a role.</string>
+    <string name="email">Email</string>
+    <string name="email_required">Email is required</string>
+    <string name="password">Password</string>
+    <string name="password_required">Password is required</string>
+    <string name="sign_in">Sign In</string>
+    <string name="select_your_role">Select Your Role</string>
+    <string name="student">Student</string>
+    <string name="unemployed">Unemployed</string>
+    <string name="business">Business</string>
+    <string name="sign_in_successful">Sign In Successful!</string>
+    <string name="signed_in_as">You signed in as: %s</string>
+</resources>
