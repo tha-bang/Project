@@ -7,6 +7,7 @@ data class Business(
     val id: String = "",
     val userId: String = "",
     val companyName: String = "",
+    val foundingDate: String = "",
     val contactPerson: String = "",
     val industry: String = "",
     val email: String = "",

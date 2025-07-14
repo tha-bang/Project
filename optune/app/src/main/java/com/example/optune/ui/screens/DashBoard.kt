@@ -3,6 +3,7 @@ package com.example.optune.ui.screens
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -19,6 +20,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -39,7 +41,8 @@ fun DashboardScreen(
     role: String,
     viewModel: OfferViewModel
 ) {
-    val offers by viewModel.offers.collectAsState()
+    val filteredOffers by viewModel.filteredOffers.collectAsState()
+    val searchQuery by viewModel.searchQuery.collectAsState()
 
     Scaffold(
         topBar = {
@@ -49,7 +52,7 @@ fun DashboardScreen(
                     IconButton(onClick = { navController.navigate("notifications") }) {
                         Icon(Icons.Default.Notifications, contentDescription = "Notifications")
                     }
-                    IconButton(onClick = { navController.navigate("profile") }) {
+                    IconButton(onClick = { navController.navigate("userProfile") }) {
                         Icon(Icons.Default.Person, contentDescription = "Profile")
                     }
                 }
@@ -69,24 +72,36 @@ fun DashboardScreen(
 
             Spacer(modifier = Modifier.height(16.dp))
 
+            OutlinedTextField(
+                value = searchQuery,
+                onValueChange = { viewModel.setSearchQuery(it) },
+                label = { Text("Search Opportunities") },
+                modifier = Modifier.fillMaxWidth()
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceAround) {
+                Button(onClick = { /* TODO: Implement Location Filter */ }) { Text("Location") }
+                Button(onClick = { /* TODO: Implement Job Type Filter */ }) { Text("Job Type") }
+                Button(onClick = { /* TODO: Implement Salary Filter */ }) { Text("Salary") }
+                Button(onClick = { /* TODO: Implement Opportunity Type Filter */ }) { Text("Opportunity Type") }
+            }
+            Spacer(modifier = Modifier.height(16.dp))
+
+            Button(onClick = { navController.navigate("communityForum") }) {
+                Text("Community Forum")
+            }
+            Spacer(modifier = Modifier.height(16.dp))
+
             when (role.lowercase()) {
                 "student", "unemployed" -> {
                     Text("Recommended Opportunities:")
-                    OfferList(offers = offers) { selected ->
-                        navController.navigate("offerDetail/${selected.id}")
+                    OfferList(offers = filteredOffers) { selected ->
+                        navController.navigate("opportunityDetails/${selected.id}")
                     }
                 }
 
                 "business" -> {
-                    Button(
-                        onClick = { navController.navigate("postOffer") },
-                        modifier = Modifier.fillMaxWidth()
-                    ) {
-                        Text("Post New Opportunity")
-                    }
-                    Spacer(modifier = Modifier.height(16.dp))
-                    Text("Your Current Offers:")
-                    OfferList(offers = offers.filter { it.businessName == "YourBusinessName" }) {}
+                    navController.navigate("companyDashboard")
                 }
 
                 "admin" -> {
@@ -98,7 +113,7 @@ fun DashboardScreen(
                     }
                     Spacer(modifier = Modifier.height(16.dp))
                     Text("Latest Posted Opportunities:")
-                    OfferList(offers = offers) {}
+                    OfferList(offers = filteredOffers) {}
                 }
 
                 else -> {
@@ -112,7 +127,8 @@ fun DashboardScreen(
 @Composable
 fun OfferList(offers: List<Offer>, onClick: (Offer) -> Unit) {
     LazyColumn(verticalArrangement = Arrangement.spacedBy(12.dp)) {
-        items(offers) { offer ->
+        items(offers) {
+            offer ->
             Card(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -130,4 +146,3 @@ fun OfferList(offers: List<Offer>, onClick: (Offer) -> Unit) {
         }
     }
 }
-

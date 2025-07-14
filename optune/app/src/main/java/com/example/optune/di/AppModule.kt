@@ -5,7 +5,7 @@ import com.example.optune.data.remote.UserDataSource
 import com.example.optune.data.repository.UserRepository
 
 // Imports needed for Retrofit and EofferApiService
-import com.example.optune.network.EofferApiService // <--- Make sure this path is correct
+import com.example.optune.data.network.EofferApiService // <--- Make sure this path is correct
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
@@ -38,7 +38,8 @@ object AppModule {
     // --- New Network Providers ---
 
     // You might want to make this configurable or store it in buildConfig
-    private const val BASE_URL = "YOUR_BASE_API_URL_HERE/" // <-- IMPORTANT: REPLACE THIS!
+    // TODO: Replace with your actual API base URL
+    private const val BASE_URL = "http://10.0.2.2:8080/" // Standard for Android emulator to access localhost
 
     @Provides
     @Singleton

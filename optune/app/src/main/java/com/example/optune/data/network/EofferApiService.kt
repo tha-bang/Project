@@ -1,4 +1,4 @@
-package com.example.optune.network // Adjust package name if you placed it elsewhere
+package com.example.optune.data.network // Adjust package name if you placed it elsewhere
 
 import com.example.optune.data.model.Offer
 import retrofit2.http.GET

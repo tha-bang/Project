@@ -48,6 +48,7 @@ import com.example.optune.ui.screens.DashboardScreen
 import com.example.optune.ui.screens.SignInScreen
 import com.example.optune.ui.screens.SignUpFormScreen
 import com.example.optune.ui.screens.SkillsAndInterestsScreen
+import com.example.optune.ui.screens.SplashScreen
 import com.example.optune.ui.screens.StudentSignUpScreen
 import com.example.optune.ui.screens.UnemployedSignUpScreen
 import com.example.optune.ui.theme.OptuneTheme
@@ -77,9 +78,12 @@ class MainActivity : ComponentActivity() {
                 Scaffold { innerPadding ->
                     NavHost(
                         navController = navController,
-                        startDestination = "home",
+                        startDestination = "splash_screen",
                         modifier = Modifier.padding(innerPadding)
                     ) {
+                        composable("splash_screen") {
+                            SplashScreen(navController)
+                        }
                         composable("home") {
                             HomePage(navController, showToast)
                         }
@@ -127,6 +131,31 @@ class MainActivity : ComponentActivity() {
                         ) { backStackEntry ->
                             val role = backStackEntry.arguments?.getString("role") ?: "unknown"
                             navController.navigate("dashboardscreen/$role")
+                        }
+                        composable("companyDashboard") {
+                            com.example.optune.ui.screens.company.CompanyDashboardScreen(navController)
+                        }
+                        composable("postOpportunity") {
+                            com.example.optune.ui.screens.company.PostOpportunityScreen(navController)
+                        }
+                        composable("opportunityDetails/{opportunityId}", arguments = listOf(navArgument("opportunityId") { type = NavType.StringType })) {
+                            val opportunityId = it.arguments?.getString("opportunityId")
+                            com.example.optune.ui.screens.OpportunityDetailsScreen(navController, opportunityId)
+                        }
+                        composable("userApplications") {
+                            com.example.optune.ui.screens.UserApplicationsScreen()
+                        }
+                        composable("messages") {
+                            com.example.optune.ui.screens.MessagesScreen(navController)
+                        }
+                        composable("chat") {
+                            com.example.optune.ui.screens.ChatScreen()
+                        }
+                        composable("communityForum") {
+                            com.example.optune.ui.screens.CommunityForumScreen(navController)
+                        }
+                        composable("userProfile") {
+                            com.example.optune.ui.screens.UserProfileScreen(navController)
                         }
                     }
                 }

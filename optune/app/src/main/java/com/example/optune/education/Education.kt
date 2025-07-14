@@ -49,7 +49,8 @@ import com.example.optune.R
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun EducationPage(
-    navController: NavHostController
+    navController: NavHostController,
+    userId: String
 ) {
     var selectedRole by remember { mutableStateOf("") }
 
@@ -107,7 +108,7 @@ fun EducationPage(
             Button(
                 onClick = {
                     selectedRole = "HighSchoolAndTertiary"
-                    navController.navigate("highSchoolAndTertiary")
+                    navController.navigate("highSchoolAndTertiary/$userId")
                 },
                 modifier = Modifier
                     .fillMaxWidth()
@@ -121,7 +122,7 @@ fun EducationPage(
             Button(
                 onClick = {
                     selectedRole = "No Education"
-                    navController.navigate("noEducation")
+                    navController.navigate("noEducation/$userId")
                 },
                 modifier = Modifier
                     .fillMaxWidth()
@@ -135,7 +136,7 @@ fun EducationPage(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HighSchoolPageForm(navController: NavController, ) {
+fun HighSchoolPageForm(navController: NavController, userId: String) {
     var highSchoolName by remember { mutableStateOf("") }
     val scrollState = rememberScrollState()
     var graduated by remember { mutableStateOf("Yes") }
@@ -144,7 +145,7 @@ fun HighSchoolPageForm(navController: NavController, ) {
     var state by remember { mutableStateOf("") }
     var postalCode by remember { mutableStateOf("") }
     var error by remember { mutableStateOf("") }
-    var documents: MutableList<Uri> = remember { mutableStateListOf() }
+    val documents: MutableList<Uri> = remember { mutableStateListOf() }
     val pickDocumentLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.GetMultipleContents(),
         onResult = { uris: List<Uri>? ->
@@ -283,7 +284,7 @@ fun HighSchoolPageForm(navController: NavController, ) {
                     error = "Please enter the postal code"
                 }
                 else {
-                    navController.navigate("skillsAndInterests")
+                    navController.navigate("skillsAndInterests/$userId")
                     error = ""
                 }
             },
@@ -297,14 +298,14 @@ fun HighSchoolPageForm(navController: NavController, ) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TertiaryPageForm(navController: NavController) {
+fun TertiaryPageForm(navController: NavController, userId: String) {
     var tertiaryName by remember { mutableStateOf("") }
     val scrollState = rememberScrollState()
     var graduated by remember { mutableStateOf("Yes") }
     var degree by remember { mutableStateOf("") }
     var fieldOfStudy by remember { mutableStateOf("") }
     var error by remember { mutableStateOf("") }
-    var documents: MutableList<Uri> = remember { mutableStateListOf() }
+    val documents: MutableList<Uri> = remember { mutableStateListOf() }
     val pickDocumentLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.GetMultipleContents(),
         onResult = { uris: List<Uri>? ->
@@ -412,7 +413,7 @@ fun TertiaryPageForm(navController: NavController) {
                 } else if (documents.isEmpty()) {
                     error = "Please upload your CV or portfolio"
                 } else {
-                    navController.navigate("skillsAndInterests")
+                    navController.navigate("skillsAndInterests/$userId")
                     error = ""
                 }
                 },
@@ -428,8 +429,8 @@ fun TertiaryPageForm(navController: NavController) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun NoEducationPageForm(navController: NavController) {
-    var documents: MutableList<Uri> = remember { mutableStateListOf() }
+fun NoEducationPageForm(navController: NavController, userId: String) {
+    val documents: MutableList<Uri> = remember { mutableStateListOf() }
     var error by remember { mutableStateOf("") }
     val pickDocumentLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.GetMultipleContents(),
@@ -476,7 +477,7 @@ fun NoEducationPageForm(navController: NavController) {
                 if (documents.isEmpty()) {
                     error = "Please upload your CV or portfolio"
                 } else {
-                    navController.navigate("skillsAndInterests")
+                    navController.navigate("skillsAndInterests/$userId")
                     error = ""
                 }
             },
@@ -489,10 +490,10 @@ fun NoEducationPageForm(navController: NavController) {
 }
 
 @Composable
-fun HighSchoolAndTertiaryPageForm(navController: NavController) {
+fun HighSchoolAndTertiaryPageForm(navController: NavController, userId: String) {
     Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
-        HighSchoolPageForm(navController)
-        TertiaryPageForm(navController)
+        HighSchoolPageForm(navController, userId)
+        TertiaryPageForm(navController, userId)
     }
 }
 
@@ -500,7 +501,7 @@ fun HighSchoolAndTertiaryPageForm(navController: NavController) {
 @Preview(showBackground = true)
 @Composable
 fun EducationPagePreview() {
-    EducationPage(navController = rememberNavController())
+    EducationPage(navController = rememberNavController(), userId = "123")
 }
 
 @Preview(showBackground = true)
@@ -508,7 +509,7 @@ fun EducationPagePreview() {
 fun HighSchoolPageFormPreview() {
     val navController = rememberNavController()
 
-    HighSchoolPageForm(navController)
+    HighSchoolPageForm(navController, userId = "123")
 }
 
 @Preview(showBackground = true)
@@ -516,7 +517,7 @@ fun HighSchoolPageFormPreview() {
 fun TertiaryPageFormPreview() {
     val navController = rememberNavController()
 
-    TertiaryPageForm(navController)
+    TertiaryPageForm(navController, userId = "123")
 }
 
 @Preview(showBackground = true)
@@ -524,7 +525,7 @@ fun TertiaryPageFormPreview() {
 fun NoEducationPageFormPreview() {
     val navController = rememberNavController()
 
-    NoEducationPageForm(navController)
+    NoEducationPageForm(navController, userId = "123")
 }
 
 @Preview(showBackground = true)
@@ -532,5 +533,5 @@ fun NoEducationPageFormPreview() {
 fun HighSchoolAndTertiaryPageFormPreview() {
     val navController = rememberNavController()
 
-    HighSchoolAndTertiaryPageForm(navController)
+    HighSchoolAndTertiaryPageForm(navController, userId = "123")
 }

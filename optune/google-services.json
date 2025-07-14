@@ -1,0 +1,106 @@
+{
+  "project_info": {
+    "project_number": "218615547263",
+    "firebase_url": "https://optune-ff32f-default-rtdb.firebaseio.com",
+    "project_id": "optune-ff32f",
+    "storage_bucket": "optune-ff32f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:218615547263:android:9d63eb8f8dcb924e6b464a",
+        "android_client_info": {
+          "package_name": "com.example.optune"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "218615547263-83foffdp294qgdm9d18aihobfi86q0ql.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyABbuUDcWLcUCfjHoEHLYDb_DuQpURs2aU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "218615547263-83foffdp294qgdm9d18aihobfi86q0ql.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:218615547263:android:6e03bf8c690c58756b464a",
+        "android_client_info": {
+          "package_name": "com.optune"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "218615547263-40hupb7mh153nevhmcg36tpfgghjdtub.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.optune",
+            "certificate_hash": "a5b67a3f26ba39a66bcaa9456b33015088f28fea"
+          }
+        },
+        {
+          "client_id": "218615547263-83foffdp294qgdm9d18aihobfi86q0ql.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyABbuUDcWLcUCfjHoEHLYDb_DuQpURs2aU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "218615547263-83foffdp294qgdm9d18aihobfi86q0ql.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:218615547263:android:7b36a1d26f57360b6b464a",
+        "android_client_info": {
+          "package_name": "com.optune2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "218615547263-83foffdp294qgdm9d18aihobfi86q0ql.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyABbuUDcWLcUCfjHoEHLYDb_DuQpURs2aU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "218615547263-83foffdp294qgdm9d18aihobfi86q0ql.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
