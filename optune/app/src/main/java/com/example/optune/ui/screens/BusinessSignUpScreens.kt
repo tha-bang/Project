@@ -17,7 +17,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import com.example.optune.viewmodel.SignUpViewModel
+import com.example.optune.ui.viewmodels.SignUpViewModel // <--- Make sure this is correct!
 import java.util.Calendar
 import java.util.Locale
 import kotlinx.coroutines.launch
@@ -64,7 +64,7 @@ fun BusinessSignUpScreen(navController: NavHostController, viewModel: SignUpView
 
         OutlinedTextField(
             value = viewModel.foundingDate,
-            onValueChange = {},
+            onValueChange = {}, // read-only
             label = { Text("Founding Date") },
             readOnly = true,
             modifier = Modifier
@@ -139,10 +139,11 @@ fun BusinessContactDetailsScreen(navController: NavHostController, viewModel: Si
             onClick = {
                 coroutineScope.launch {
                     if (viewModel.validateBusinessInfo()) {
-                        val userId = viewModel.createBusiness()
-                        if (userId != null) {
-                            navController.navigate("dashboard") {
-                                popUpTo("businessSignUp") { inclusive = true }
+                        viewModel.createBusiness { userId ->
+                            if (userId != null) {
+                                navController.navigate("dashboard") {
+                                    popUpTo("businessSignUp") { inclusive = true }
+                                }
                             }
                         }
                     }

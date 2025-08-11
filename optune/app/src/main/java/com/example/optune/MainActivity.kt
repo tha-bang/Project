@@ -62,14 +62,14 @@ class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        FirebaseApp.initializeApp(this)
+        
         enableEdgeToEdge()
 
         setContent {
             OptuneTheme {
                 val navController = rememberNavController()
                 val context = LocalContext.current
-                val viewModel: OfferViewModel = hiltViewModel()
+
 
                 val showToast: (String) -> Unit = { message ->
                     Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
@@ -156,6 +156,9 @@ class MainActivity : ComponentActivity() {
                         }
                         composable("userProfile") {
                             com.example.optune.ui.screens.UserProfileScreen(navController)
+                        }
+                        composable("forgotPassword") {
+                            com.example.optune.ui.screens.ForgotPasswordScreen(navController)
                         }
                     }
                 }

@@ -82,7 +82,7 @@ dependencies {
     implementation(libs.androidx.hilt.navigation.compose)
 
     // Coil for Image Loading
-    implementation(libs.coil.compose) // Added to resolve 'coil' reference
+    
 
     // Firebase
     implementation(platform("com.google.firebase:firebase-bom:33.16.0"))
@@ -124,5 +124,5 @@ dependencies {
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.8.3")
     //Coil
-    implementation("io.coil-kt:coil-compose:2.6.0") // Use the latest version of Coil
+    implementation("io.coil-kt:coil-compose:2.6.0")
 }

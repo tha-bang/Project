@@ -188,6 +188,9 @@ fun SignInScreen(navController: NavController, viewModel: SignInViewModel = hilt
             Button(onClick = { handleGoogleSignIn() }) {
                 Text("Sign in with Google")
             }
+            TextButton(onClick = { navController.navigate("forgotPassword") }) {
+                Text("Forgot Password?", color = Color.White)
+            }
         }
     }
 }

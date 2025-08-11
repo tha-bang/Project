@@ -9,12 +9,7 @@ plugins {
     alias(libs.plugins.kotlin.serialization) apply false // Added for serialization support
 }
 
-allprojects {
-    repositories {
-        //google() // Added for Google Maven
-       // mavenCentral() // Added for central Maven
-    }
-}
+
 
 tasks.register("clean", Delete::class) {
     delete(rootProject.layout.buildDirectory)
